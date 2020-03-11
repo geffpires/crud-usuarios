@@ -11,6 +11,8 @@ export class UsuarioMockService implements IUsuarioService {
     usuarios: UsuarioDTO[] = [
         new UsuarioDTO(1, "Gustavo Maciel", "gustavo@mail.com"),
         new UsuarioDTO(2, "Vinnicius", "vinnicius@mail.com"),
+        new UsuarioDTO(3, "Gefferson Pires", "geff@gmail.com"),
+        new UsuarioDTO(4, "Tiago TI", "thiagoti@gmail.com"),
     ]
 
     lastId: number = 2;
@@ -24,7 +26,15 @@ export class UsuarioMockService implements IUsuarioService {
         );
     }
     getById(id: number): Observable<any> {
-        throw new Error("Method not implemented.");
+
+        let auxUser: UsuarioDTO;
+        this.usuarios.forEach((user) =>{
+            if(user.id == id) auxUser = user;
+        });
+        return new Observable<UsuarioDTO>((obs) =>{
+            obs.next(auxUser);
+            obs.complete();
+        });
     }
     insert(usuario: any): Observable<any> {
         this.usuarios.push(usuario);

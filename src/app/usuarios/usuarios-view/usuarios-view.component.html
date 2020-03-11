@@ -1,0 +1,11 @@
+<div class= "container">
+    <div *ngIf="!isLoading else loadingInfo">
+        {{usuario.id}}
+        {{usuario.name}}
+        {{usuario.email}}
+    </div>
+
+    <ng-template #loadingInfo>
+        Loading...
+    </ng-template>
+</div>
